@@ -5,10 +5,9 @@
  */
 package king.application.web.spring.clouds.luckseven.assembler.assembler.controller;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.Peridocial;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.PeridocialBrief;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.feign.CalculatorFeignClient;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.FeignService;
@@ -16,6 +15,7 @@ import king.application.web.spring.clouds.luckseven.assembler.assembler.service.
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.MostService;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.SectionService;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.TagService;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.service.TreeService;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.UrlService;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.tag.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +42,9 @@ public class LeafController {
     
     @Autowired
     private LeafService leaf;
+    
+    @Autowired
+    private TreeService tree;
     
     @Autowired
     private FeignService feign;
@@ -152,54 +155,17 @@ public class LeafController {
         return this.most.getAsideFw();
     }
     
-    
-    //我们这里设定 第二级的  http 文本的 设定
-    /**
-     * 
-     *  这里是 第二级 http 的设定
-     *  是将 上层 的 http 信息 在这里 进行 一次 整合
-     *  通过这样来尽量 减少的 相对应的 http 请求的 方式 
-     *  但是 也不一定 一定是 如此 ， 我们只能说
-     *  这样做的 方法 只是一种获取 信息的 方式
-     * 
-     * @param string
-     * @param page_index
-     * @param page_size
-     * @return 
-     */
-    
-    @RequestMapping("header/firstbar")
-    public String header_firstbar(){
-        Tag tag = this.leaf.firstbar();
-        return this.tag.http(tag);
-    }
-    
-    //相对应的 头部 信息 
-    @RequestMapping("header/brand")
-    public String header_brand(){
-        Tag brand = this.leaf.brand();
-        
-        return this.tag.http(brand);
-    }
-    
-    @RequestMapping("header/menu")
-    public String header_menu(){
-        
-        Tag header_menu = this.leaf.menu();
-        //相对应的 输出 相对应的额 信息 
-        return this.tag.http(header_menu);
-    }
-    
-    @RequestMapping("header/nav")
-    public String header_nav(){
-        Tag nav = this.leaf.headerNavList();
-        return this.tag.http(nav);
-    }
-    
     @RequestMapping("header")
     public String header(){
-        Tag firstbar = this.leaf.firstbar();
-        Tag menu = this.leaf.menu();
+        //进行设置 相对应的 信息
+        HashMap<String,String> map = new HashMap<>();
+        map.put("HTML5", "dqwd");
+        map.put("996", "dqwd");
+        map.put("what ha", "dqwfqw");
+        
+        //上面 只是 暂时的 设置 相对应的 信息 ， 后续我们 会进行 调整
+        Tag firstbar = this.tree.headerFirstbar(map,null);
+        Tag menu = this.tree.headerMenu();
         
         return this.tag.and(firstbar, menu);
     }
@@ -224,7 +190,6 @@ public class LeafController {
     @RequestMapping("login/section")
     public String login_section(){
         List<Tag> list_tag = this.section.login();
-        
         Tag _section = this.leaf.inputSection("Login", list_tag);
         
         return this.tag.http(_section);
