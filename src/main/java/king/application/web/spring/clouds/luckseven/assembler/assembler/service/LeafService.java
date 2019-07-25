@@ -709,6 +709,7 @@ public class LeafService {
      *
      * @return
      */
+    
     public Tag footer() {
         Tag container = this.tag.build("div").attr("class", "container").text("<div class=\"row\">\n"
                 + "                    <div class=\"col-md-3 col-sm-6 col-xs-12\">\n"
@@ -1007,5 +1008,31 @@ public class LeafService {
         this.tag.append(group_span, tag)
                 .append(group, group_span);
         return group;
+    }
+    
+    public Tag icon(String class_name){
+        return this.tag.build("i").attr("class", class_name);
+    }
+    
+    public Tag block(String block_title_string , Tag [] tags ){
+        //相对应的 block 的 信息 本体、
+        Tag block = this.tag.build("div").attr("class", "block");
+        
+        Tag block_title = this.tag.build("h1").attr("class", "block-title")
+                .text(block_title_string);
+        
+        Tag block_body = this.tag.build("div").attr("class", "block-body");
+        
+        for(Tag tag : tags){
+            //将目标的 tag 按照 相对应的 序列关系 进行 插入
+            this.tag.append(block_body, tag);
+        }
+        //已经输入 相对应的 消息
+        
+        this.tag.append(block, block_title)
+                .append(block, block_body);
+        
+        
+        return block;
     }
 }

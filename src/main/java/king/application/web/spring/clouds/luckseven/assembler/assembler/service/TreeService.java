@@ -12,35 +12,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * 倘若 需要 一次性的 全部输出 相对应的 信息
- * 我们便在这里 进行 相对应的 规定 ， 这里只生产 相对应的 一次性产生工具
+ * 倘若 需要 一次性的 全部输出 相对应的 信息 我们便在这里 进行 相对应的 规定 ， 这里只生产 相对应的 一次性产生工具
+ *
  * @author king
  */
 @Service
 public class TreeService {
-    
+
     @Autowired
-    private FeignService feign ;
-    
+    private FeignService feign;
+
     @Autowired
     private TreeService tree;
-    
+
     @Autowired
     private LeafService leaf;
-    
+
     @Autowired
     private TagService tag;
-    
-    
+
     /**
      * 下面 这个 是 相对应的 所有网页头部的 信息
      *
      * 可能 我们需要分成 好几部 来完成 相对应的 工作 ， 但是 没事 ， 我认为 ， 在 相对应的 时间内
-     * 
-     * 另一个参数 ，User 可以 进行 相对应的 调整 , 
-     * 
+     *
+     * 另一个参数 ，User 可以 进行 相对应的 调整 ,
+     *
      */
-    
     // 但是 还是 有 相对应的 问题 ， 便是  效率 上的 问题 ， 估计 之后 需要 相对应的 调整
     /**
      * <div class="firstbar">
@@ -89,11 +87,10 @@ public class TreeService {
      * @param user
      * @return
      */
-    public Tag headerFirstbar(Map<String,String> recommend_map , User user) {
+    public Tag headerFirstbar(Map<String, String> recommend_map, User user) {
         //似乎 有 两部分 组成 ， 我们 首先 观察 上面 那部分
-        
+
         //这里 , 我们 需要 设置 更多的 信息 ,比如 搜索 下面的 推荐信息
-        
         Tag firstbar = this.tag.build("div").attr("class", "firstbar");
         Tag firstbar_container = this.tag.build("div").attr("class", "container");
         Tag firstbar_container_row = this.tag.build("div").attr("class", "row");
@@ -123,7 +120,6 @@ public class TreeService {
 
         Tag firstbar_container_row_col2_form_group_group_btn_button = this.tag.build("button").attr("class", "btn btn-primary");
         Tag firstbar_container_row_col2_form_group_group_btn_button_i = this.tag.build("i").attr("class", "ion-search");
-        
 
         this.tag.append(firstbar_container_row_col2_form_group_group_btn_button, firstbar_container_row_col2_form_group_group_btn_button_i)
                 .append(firstbar_container_row_col2_form_group_group_btn, firstbar_container_row_col2_form_group_group_btn_button)
@@ -146,18 +142,17 @@ public class TreeService {
             key 为 相对应的 推荐 内容 ， value 为 链接
          */
         //这里仅仅是测试 数据 中心
-        
         /**
          * 下面 ， 我们 开始 设置
          */
-        Map<String,String> firstbar_container_row_col2_form_help_ul_li_recommands_map = recommend_map;
+        Map<String, String> firstbar_container_row_col2_form_help_ul_li_recommands_map = recommend_map;
 
         for (String key : firstbar_container_row_col2_form_help_ul_li_recommands_map.keySet()) {
-            
+
             //注意 ， 相对应的 key 为 text ， name 为 推荐 内容
             //相对应的 li 数据
             String value = firstbar_container_row_col2_form_help_ul_li_recommands_map.get(key);
-            
+
             Tag first_container_row_col2_form_help_ul_li = this.tag.build("li");
 
             //设置 相对应的 信息
@@ -175,7 +170,7 @@ public class TreeService {
 
         /* 这里 使用的 默认 参数  */
         //这里 是 用户信息的 地址 ， 个人认为 最好把 这个 单独 撰写 一个 函数 ， 
-        Tag firstbar_container_row_col3 =  user != null ? this.leaf.headerFirstbarUserDiv(user) : this.leaf.headerFirstbarDeafultUser();
+        Tag firstbar_container_row_col3 = user != null ? this.leaf.headerFirstbarUserDiv(user) : this.leaf.headerFirstbarDeafultUser();
 
         this.tag.append(firstbar_container_row, firstbar_container_row_col3)
                 .append(firstbar_container, firstbar_container_row)
@@ -185,15 +180,13 @@ public class TreeService {
 
         // 相对应
     }
-    
-    
+
     /**
-     * 
-     * 大致 分析 了 一下 ， 相对应的 错误 应该 是 
-     * 需要 设置 一个 List ， 然后 元素 最简单 的 可以 是一个 相对应的 Tag ， 这是 最简单的 方法，
-     * 但是 这样的 操作 ， 无法 进行 很 好的 管理 ， 以及 自动化
-     * 
-     * @return 
+     *
+     * 大致 分析 了 一下 ， 相对应的 错误 应该 是 需要 设置 一个 List ， 然后 元素 最简单 的 可以 是一个 相对应的 Tag ，
+     * 这是 最简单的 方法， 但是 这样的 操作 ， 无法 进行 很 好的 管理 ， 以及 自动化
+     *
+     * @return
      */
     public Tag headerMenu() {
 
@@ -225,13 +218,10 @@ public class TreeService {
 
         return menu;
     }
-    
-    
+
     //刚开始 
     public Tag headerMeauNavList() {
         Tag navlist = this.tag.build("div").attr("id", "menu-list");
-        
-        
 
         Tag navlist_ul = this.tag.build("ul").attr("class", "nav-list").text("<li class=\"for-tablet nav-title\"><a>Menu</a></li>\n"
                 + "                            <li class=\"for-tablet\"><a href=\"login.html\">Login</a></li>\n"
@@ -448,5 +438,84 @@ public class TreeService {
         return navlist;
 
     }
-    
+
+    public Tag footer() {
+
+        Tag container = this.tag.build("div").attr("class", "container");
+        //最上层的 信息
+
+        Tag container_row = this.tag.build("div").attr("class", "row");
+
+        //这里 是 创建 最左边的 那个 小表格
+        //创建 开始
+        Tag container_row_div_1 = this.tag.build("div").attr("class", "col-md-3 col-sm-6 col-xs-12");
+
+        Tag container_row_div_block = this.tag.build("div").attr("class", "block");
+        
+        Tag container_row_div_block_title = this.tag.build("h1").attr("class", "block-title");
+
+        Tag container_row_div_block_body = this.tag.build("h1").attr("class", "block-body");
+        
+        Tag container_row_div_block_body_figure = this.tag.build("figure").attr("class","foot-logo");
+        
+        
+        //输入 相对应的 src 地址
+        String container_row_div_block_body_figure_img_string = "images/logo-light.png";
+        
+        
+        Tag container_row_div_block_body_figure_img = this.tag.build("img").attr("class", "img-responsive")
+                .attr("alt", "Logo").attr("src", container_row_div_block_body_figure_img_string);
+        
+        //填充 相对应的 信息
+        this.tag.append(container_row_div_block_body_figure,container_row_div_block_body_figure_img);
+
+        //相对应的 公司介绍 文本信息
+        String container_row_div_block_body_describe_string 
+                = "Magz is a HTML5 &amp; CSS3 magazine template based on Bootstrap 3.";
+        //相对应的公司介绍
+        Tag container_row_div_block_body_describe = this.tag.build("p").attr("class", "brand-description")
+                .text(container_row_div_block_body_describe_string);
+        
+        //下面 两个元素分别代表着 不同的 信息
+        String container_row_div_block_body_a_href = "/minitors/model/" ;
+        String container_row_div_block_body_a_text = "About us";
+        
+        Tag container_row_div_block_body_a = this.tag.build("a")
+                .attr("href",container_row_div_block_body_a_href).attr("class", "btn btn-magz white")
+                .text(container_row_div_block_body_a_text);
+        //对应的 图标信息
+        Tag container_row_div_block_body_a_i = this.leaf.icon("ion-ios-arrow-thin-right");
+        
+        //将 图标值 icon ， 带入 a中
+        this.tag.append(container_row_div_block_body_a,container_row_div_block_body_a_i)
+                //这里 开始 输入 相对应的 信息
+                .append(container_row_div_block_body, container_row_div_block_body_figure)
+                .append(container_row_div_block_body, container_row_div_block_body_describe)
+                .append(container_row_div_block_body, container_row_div_block_body_a)
+                //block_body 中的 值 已经输入完成 ， 现在 ， 我们 输入 相对应的 上层信息
+                
+                .append(container_row_div_block, container_row_div_block_title)
+                .append(container_row_div_block, container_row_div_block_body)
+                
+                .append(container_row_div_1,container_row_div_block);
+        
+        
+        Tag container_row_div_2 = this.tag.build("div").attr("div", "col-md-3 col-sm-6 col-xs-12");
+        
+        //中间位 我们 开始 创建 相对应的 信息
+        
+        
+        Tag container_row_div_2_block = this.leaf.block("LastNew", new Tag[]{});
+        
+        this.tag.append(container_row_div_2, container_row_div_2_block);
+        
+        //最后 进行 相对应的 添加
+        this.tag.append(container_row, container_row_div_1)
+                .append(container_row, container_row_div_2)
+                .append(container, container_row);
+
+        return container;
+
+    }
+
 }
