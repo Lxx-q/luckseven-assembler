@@ -5,19 +5,15 @@
  */
 package king.application.web.spring.clouds.luckseven.assembler.assembler.service;
 
+import java.util.HashMap;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.tag.strategy.TagStrategy;
 import org.springframework.stereotype.Service;
 
 /**
  *
- * @author king
+ * @author Administrator
  */
 @Service
-public class UrlService {
-   
-    private final String MINITORS_URL_SUPPORT = "http://localhost:8084/minitors/model/";
+public class StrategyService extends HashMap<String,TagStrategy>{
     
-    public String url(String url){
-        return new StringBuilder().append(MINITORS_URL_SUPPORT).append(url).toString();
-    }
-        
 }

@@ -5,11 +5,8 @@
  */
 package king.application.web.spring.clouds.luckseven.assembler.assembler.configuration;
 
-import java.util.List;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.LeafService;
-import king.application.web.spring.clouds.luckseven.assembler.assembler.tag.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**

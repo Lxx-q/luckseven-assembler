@@ -1014,7 +1014,7 @@ public class LeafService {
         return this.tag.build("i").attr("class", class_name);
     }
     
-    public Tag block(String block_title_string , Tag [] tags ){
+    public Tag block(String block_title_string ,  List<Tag> tags){
         //相对应的 block 的 信息 本体、
         Tag block = this.tag.build("div").attr("class", "block");
         
@@ -1034,5 +1034,12 @@ public class LeafService {
         
         
         return block;
+    }
+    
+    //输出 相对应的 信息
+    public Tag button(String href , String class_string , String text){
+        //输出 相对应的 信息    
+        return this.tag.build("a").attr("href", href).attr("class", class_string)
+                .text(text);
     }
 }

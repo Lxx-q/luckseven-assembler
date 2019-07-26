@@ -5,11 +5,9 @@
  */
 package king.application.web.spring.clouds.luckseven.assembler.assembler.service;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Map.Entry;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.tag.DefaultTag;
-import king.application.web.spring.clouds.luckseven.assembler.assembler.tag.ListTag;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.tag.Tag;
 import org.springframework.stereotype.Service;
 

@@ -5,9 +5,13 @@
  */
 package king.application.web.spring.clouds.luckseven.assembler.assembler.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.PeridocialBrief;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.User;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.tag.Tag;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.tag.strategy.TagStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +34,16 @@ public class TreeService {
 
     @Autowired
     private TagService tag;
+    
+    @Autowired
+    private StrategyService strategy;
+    
+    //之后 再为该方法 进行 相对应的 工作 ， 应为 内部 不知道 
+    //暂时 不必
+    public Tag strategy(){
+        TagStrategy _strategy = this.strategy.get(null);
+        return _strategy.build();
+    }
 
     /**
      * 下面 这个 是 相对应的 所有网页头部的 信息
@@ -219,7 +233,13 @@ public class TreeService {
         return menu;
     }
 
-    //刚开始 
+    /**
+     * 之所以 ， 这里还没有 进行 动手操作 ， 的 主要 原因 便是
+     * 这里需要大量的 操作策略模型的设计
+     * 需要等到 相对应的 模型理论建立 之后 ， 才可以 进行 相对应的操作
+     * 
+     * @return 
+     */
     public Tag headerMeauNavList() {
         Tag navlist = this.tag.build("div").attr("id", "menu-list");
 
@@ -439,6 +459,7 @@ public class TreeService {
 
     }
 
+    //需要 两个值 ， 一个为 用户 ， 一个为
     public Tag footer() {
 
         Tag container = this.tag.build("div").attr("class", "container");
@@ -505,14 +526,87 @@ public class TreeService {
         //中间位 我们 开始 创建 相对应的 信息
         
         
-        Tag container_row_div_2_block = this.leaf.block("LastNew", new Tag[]{});
+        //这里 是 相对应的 List<PeridocialBrief> 的 信息 , 如何 获取该信息 ， 我们 不去 追究 ， 
+        //我们 直接 在这里进行输出
+        
+        //设置 上列的 信息
+        
+        List<PeridocialBrief> container_row_div_2_block_peridocials = new ArrayList<PeridocialBrief>();
+        //获取相对应的 信息的长度
+        List<Tag> container_row_div_2_block_tag_list = new ArrayList<>();
+        
+        for(PeridocialBrief peridocial_brief : container_row_div_2_block_peridocials){
+            Tag container_row_div_2_block_article = this.leaf.articleMini(peridocial_brief);
+            //将 相对应的 信息 输入 到 相对应的地方
+            container_row_div_2_block_tag_list.add(container_row_div_2_block_article);
+        }
+        
+        Tag container_row_div_2_block_icon = this.leaf
+                    .button("#" , "btn btn-magz white btn-block" 
+                            ,  new StringBuilder().append("See all")
+                                    .append(this.tag.http(this.leaf.icon("ion-ios-arrow-thin-right")))
+                                    .toString());
+        
+        container_row_div_2_block_tag_list.add(container_row_div_2_block_icon);
+        
+        Tag container_row_div_2_block = this.leaf.block("LastNew", container_row_div_2_block_tag_list);
         
         this.tag.append(container_row_div_2, container_row_div_2_block);
         
+        
+        //第三段的 信息
+        Tag container_row_div_3  = this.tag.build("div").attr("class", "col-md-4 col-sm-6 col-xs-12");
+        
+        //我们输出 相对应的 一定量的 信息 
+        List<PeridocialBrief> containers_row_div_3_block_peridocials = new ArrayList<PeridocialBrief>();
+        
+        List<Tag> container_row_div_3_block_tag_list = new ArrayList<>();
+        //相对应的信息
+        for(PeridocialBrief peridocial_brief : containers_row_div_3_block_peridocials){
+        
+            Tag container_row_div_3_block_article = this.leaf
+                    .articleMini(peridocial_brief);
+            
+            //输入 相对应的信息
+            container_row_div_3_block_tag_list.add(container_row_div_3_block_article);
+        }
+        
+        Tag container_row_div_3_block = this.leaf.block
+        ("Se all", container_row_div_3_block_tag_list);
+        
+        this.tag.append(container_row_div_3, container_row_div_3_block);
+        
+        //最后 底部的 标签语句
+        
+        Tag container_row_tail = this.tag.build("div").attr("class", "row");
+        
+        Tag container_row_tail_div = this.tag.build("div").attr("class", "col-md-12");
+        
+        Tag container_row_tail_div_copyright = this.tag.build("div").attr("class", "copyright")
+                .text("COPYRIGHT &copy; MAGZ 2017. ALL RIGHT RESERVED.");
+        
+        Tag container_row_tail_div_copyright_div = this.tag.build("div")
+                .text(new StringBuilder().append("Made with")
+                        //添加 相对应的 id
+                        .append(this.tag.http(this.leaf.icon("ion-heart")))
+                        .append(" by king").toString());
+        
+        
+        
+        
+        
         //最后 进行 相对应的 添加
-        this.tag.append(container_row, container_row_div_1)
+        this.tag.append(container_row_tail_div_copyright, container_row_tail_div_copyright_div)
+                .append(container_row_tail_div, container_row_tail_div_copyright)
+                .append(container_row_tail,container_row_tail_div)
+                //下面 这里是 最后每一行数据 进行的 添加
+                .append(container_row, container_row_div_1)
                 .append(container_row, container_row_div_2)
-                .append(container, container_row);
+                .append(container_row, container_row_div_3)
+                .append(container, container_row)
+                //底部数据的添加
+                .append(container, container_row_tail);
+        
 
         return container;
 
