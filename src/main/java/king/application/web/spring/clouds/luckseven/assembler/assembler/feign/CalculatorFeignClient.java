@@ -6,9 +6,11 @@
 package king.application.web.spring.clouds.luckseven.assembler.assembler.feign;
 
 import java.util.List;
+import java.util.Map;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.Peridocial;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.PeridocialBrief;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,4 +37,17 @@ public interface CalculatorFeignClient {
     @RequestMapping("calculator/application/most")
     public List<PeridocialBrief> applicationMost();
     
+    
+    //根据 相对应的 peridocial _id  , 便可以 获取 相对应的 peridocial 的 favorites 数目
+    /**
+     *  输出 相对应的 信息 
+     * 相对应的 架构为 { id : xx , favorites_count : xx }
+     * @param id
+     * @return 
+     */
+    @RequestMapping( "/calculator/search/peridocial/favorites")
+    public List<Map<String,Object>> searchPeridocialFavorites(@RequestBody List<String> id );
+ 
+    @RequestMapping("/calculator/search/list")
+    public List list();
 }

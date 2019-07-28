@@ -5,6 +5,7 @@
  */
 package king.application.web.spring.clouds.luckseven.assembler.assembler.controller;
 
+import java.util.ArrayList;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.feign.CalculatorFeignClient;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.TagService;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.TreeService;
@@ -34,5 +35,16 @@ public class TreeController {
         return this.tag.http(this.tree.footer());
     }
     
+    
+    @RequestMapping("list")
+    public Object list(){
+        ArrayList<String> list = new ArrayList<>();
+        list.add("dw");
+        
+        list.add("dqwd");
+        
+        return this.calculator.list();
+        
+    }
     
 }

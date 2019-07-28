@@ -63,10 +63,11 @@ public class LeafService {
      * </article>
      *
      * @param peridocial
+     * @param favorites_count
      * @param peridocials
      * @return
      */
-    public Tag articleInner(PeridocialBrief peridocial) {
+    public Tag articleInner(PeridocialBrief peridocial , Integer favorites_count) {
 
         String href_peridocial = this.url.url("single/page/" + peridocial.getId());
 
@@ -122,7 +123,7 @@ public class LeafService {
         Tag article_inner_details_footer_love_i = this.tag.build("i").attr("class", "ion-android-favorite-outline");
 
         //这里为 相对应的 点赞数
-        Tag article_inner_details_footer_love_div = this.tag.build("div").text(Integer.toString(100));
+        Tag article_inner_details_footer_love_div = this.tag.build("div").text(favorites_count.toString());
 
         this.tag.append(article_inner_details_footer_love, article_inner_details_footer_love_i)
                 .append(article_inner_details_footer_love, article_inner_details_footer_love_div)
