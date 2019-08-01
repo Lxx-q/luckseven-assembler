@@ -48,7 +48,7 @@ public class BeanService {
         
     }
     
-    public <T,M> List<Map<String,Object>> toMap(List<T> list_target , TransferFunction<T,M> function){
+    public <T,M> List<Map<String,Object>> toMap1(List<T> list_target , TransferFunction<T,M> function){
         
         List<Map<String,Object>> result = new ArrayList<>();
         
@@ -68,6 +68,23 @@ public class BeanService {
         }
         
         return result;
+        
+    }
+    
+    public <T,M> Map<M,T> toMap(List<T> list , TransferFunction<T,M> function){
+        
+        Map<M,T> map = new HashMap<>();
+        
+        for(T target : list){
+            
+            //获取相对应的 
+            M key = function.transfer(target);
+            
+            map.put(key, target);
+            
+        }
+        
+        return map;
         
     }
     

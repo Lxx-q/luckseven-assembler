@@ -69,7 +69,7 @@ public class LeafService {
      */
     public Tag articleInner(PeridocialBrief peridocial , Integer favorites_count) {
 
-        String href_peridocial = this.url.url("single/page/" + peridocial.getId());
+        String href_peridocial = this.url.http("single/page/" + peridocial.getId());
 
         Tag article = this.tag.build("article").attr("class", "col-md-12 article-list");
         //获取 相对应的 article_inner 标签 ， 这里 是大部分数据的 集合地 ， 所以 
@@ -266,7 +266,7 @@ public class LeafService {
     public Tag articleMini(PeridocialBrief peridocial) {
         Tag article = this.tag.build("article").attr("class", "article-mini");
 
-        String peridocial_href = this.url.url("/single/page/" + peridocial.getId());
+        String peridocial_href = this.url.http("/single/page/" + peridocial.getId());
 
         Tag article_inner = this.tag.build("div").attr("class", "inner");
 

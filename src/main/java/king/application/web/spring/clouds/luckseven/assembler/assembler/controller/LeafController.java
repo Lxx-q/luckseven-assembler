@@ -76,6 +76,13 @@ public class LeafController {
         });
 
         List<Map<String, Object>> list_map = this.calculator.searchPeridocialFavorites(list_id);
+        
+        Map<String,Map<String, Object>> id_map = this.bean.toMap(list_map, new TransferFunction<Map<String, Object> , String>() {
+            @Override
+            public String transfer(Map<String, Object> target) {
+                return target.get("id").toString();
+            }
+        });
 
         if (peridocials == null || peridocials.isEmpty()) {
             return "";
@@ -88,16 +95,18 @@ public class LeafController {
         
             PeridocialBrief peridocial = peridocials.get(index);
             
-            Map map = list_map.get(index);
+            String id = peridocial.getId();
             
-            //Integer favorites_count = 10;
+            //根据 相对应的 id  来 获取 相对应的 信息
+            Map<String,Object> map = id_map.get(id);
             
+            Integer favorites_count = 10;
+            //如果 不为空 ， 那么 我们就开始 获取 相对应的 值
             if( map != null ){
-                //favorites_count = Integer.getInteger(map.get("favorites_count").toString());
+                favorites_count = Integer.parseInt(map.get("favorites_count").toString());
             }
             
-            
-            Tag article = this.leaf.articleInner(peridocial,1000);
+            Tag article = this.leaf.articleInner(peridocial,favorites_count);
 
             if (article != null) {
                 //倘若 相对应的 信息 进行 输入 
@@ -188,9 +197,9 @@ public class LeafController {
     public String header() {
         //进行设置 相对应的 信息
         HashMap<String, String> map = new HashMap<>();
-        map.put("HTML5", "dqwd");
-        map.put("996", "dqwd");
-        map.put("what ha", "dqwfqw");
+        map.put("HTML5", "HTML5");
+        map.put("996", "a12");
+        map.put("what ha", "a1");
 
         //上面 只是 暂时的 设置 相对应的 信息 ， 后续我们 会进行 调整
         Tag firstbar = this.tree.headerFirstbar(map, null);

@@ -38,6 +38,9 @@ public class TreeService {
     @Autowired
     private StrategyService strategy;
     
+    @Autowired
+    private UrlService url;
+    
     //之后 再为该方法 进行 相对应的 工作 ， 应为 内部 不知道 
     //暂时 不必
     public Tag strategy(){
@@ -120,7 +123,9 @@ public class TreeService {
 
         Tag firstbar_container_row_col2 = this.tag.build("div").attr("class", "col-md-6 col-sm-12");
 
-        Tag firstbar_container_row_col2_form = this.tag.build("form").attr("class", "search").attr("autocomplete", "off");
+        //可以在这里设置 相对应的 action 的 属性 ， 来确定 相对应导向的 位置
+        Tag firstbar_container_row_col2_form = this.tag.build("form").attr("class", "search").attr("autocomplete", "off")
+                .attr("action",this.url.http("category"));
 
         Tag firstbar_container_row_col2_form_group = this.tag.build("div").attr("class", "form-group");
         Tag firstbar_container_row_col2_form_group_group = this.tag.build("div").attr("class", "input-group");
@@ -166,11 +171,14 @@ public class TreeService {
             //注意 ， 相对应的 key 为 text ， name 为 推荐 内容
             //相对应的 li 数据
             String value = firstbar_container_row_col2_form_help_ul_li_recommands_map.get(key);
+            
+            //获取 相对应的 路径
+            String url = this.url.http("category","string" , value);
 
             Tag first_container_row_col2_form_help_ul_li = this.tag.build("li");
 
             //设置 相对应的 信息
-            Tag first_container_row_col2_form_help_ul_li_a = this.tag.build("a").attr("href", value).text(key);
+            Tag first_container_row_col2_form_help_ul_li_a = this.tag.build("a").attr("href", url).text(key);
 
             this.tag.append(first_container_row_col2_form_help_ul_li, first_container_row_col2_form_help_ul_li_a)
                     .append(firstbar_container_row_col2_form_help_ul, first_container_row_col2_form_help_ul_li);
