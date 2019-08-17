@@ -5,6 +5,7 @@
  */
 package king.application.web.spring.clouds.luckseven.assembler.assembler.service;
 
+import king.application.web.spring.clouds.luckseven.assembler.assembler.service.tag.TagService;
 import java.util.List;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.PeridocialBrief;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.User;
@@ -80,7 +81,8 @@ public class LeafService {
         //相对应的 链接地址
         Tag article_inner_figure_a = this.tag.build("a").attr("href", href_peridocial);
 
-        Tag article_inner_figure_a_image = this.tag.build("img").attr("src", peridocial.getImage());
+        Tag article_inner_figure_a_image = this.tag.build("img")
+                .attr("src", peridocial.getImage());
         //将 上面的 关系 一次性全部进行拼接 ， 虽然 ， 代码的 观赏性 可能不强 ， 但是 ， 就是 比较爽 能一次性解决 就是 了
         //tag.append( father , children ) 的 返回值 为 自身 ， 之所以 怎么做 目前只是为了能减少适当的工作量
         this.tag.append(article, article_inner)
@@ -157,9 +159,9 @@ public class LeafService {
      *
      * 显示 相对应的 信息
      *
-     * @param peridocial_page
-     * @param max_button
-     * @param active
+     * @param peridocial_page 一共有的页面数量 
+     * @param max_button 显示按钮的数量
+     * @param active 显示我们的 当前的 页面
      * @return
      */
     // 进行 相对应的 获取 相对应的
@@ -179,11 +181,13 @@ public class LeafService {
                 .append(pagination_ul_prev, pagination_ul_prev_a)
                 .append(pagination_ul, pagination_ul_prev);
 
-        //设置 相对应的 peridocial _ page
-        boolean is = peridocial_page > max_button;
-
-        int size = is ? max_button : peridocial_page;
-
+        //倘若当前的 页面的 数量 是否 大于 最大 按钮数量
+        boolean is_page_eq_max_button = peridocial_page > max_button;
+        
+        // 根据 上面的 规则 ， 我们 便会知道 ， 这个逻辑 ， 我们的 显示 size ， 会显示 最小的 值
+        int size = is_page_eq_max_button ? max_button : peridocial_page;
+        
+        //如果 当前 页面值 大于或者 小于吧 size ， 那么 ， 我们 便可以 输出 
         int _active = active > size ? size : active;
 
         for (int index = 0; index < size; index++) {
@@ -198,11 +202,11 @@ public class LeafService {
 
             String pagination_ul_li_a_text = Integer.toString(index + 1);
 
-            if (is && index == size - 2) {
+            if (is_page_eq_max_button && index == size - 2) {
 
                 //倘若 数量 正正好 ， 并且 
                 pagination_ul_li_a_text = "...";
-            } else if (is && index == size - 1) {
+            } else if (is_page_eq_max_button && index == size - 1) {
                 pagination_ul_li_a_text = Integer.toString(peridocial_page);
             }
 
@@ -291,10 +295,11 @@ public class LeafService {
         this.tag.append(article_inner_padding_h1, article_inner_padding_h1_a)
                 .append(article_inner_padding, article_inner_padding_h1);
 
-        Tag article_inner_padding_detail = this.tag.build("div").attr("class", "detail");
-
+        Tag article_inner_padding_detail = this.tag
+                .build("div").attr("class", "detail");
+        
         Tag article_inner_padding_detail_category = this.tag.build("div").attr("class", "category");
-
+        
         //这里 有一个 相对应的 标志 ， 所以 我们 要记住
         Tag article_inner_padding_detail_category_a = this.tag.build("a").attr("href", peridocial_href).text("Happy");
 

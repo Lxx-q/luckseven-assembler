@@ -5,6 +5,7 @@
  */
 package king.application.web.spring.clouds.luckseven.assembler.assembler.service;
 
+import king.application.web.spring.clouds.luckseven.assembler.assembler.service.tag.TagService;
 import java.util.List;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.PeridocialBrief;
 import org.springframework.beans.factory.annotation.Autowired;

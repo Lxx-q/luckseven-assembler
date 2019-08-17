@@ -14,12 +14,9 @@ import java.util.Date;
 
 //确定的是期刊的一本杂志
 public class Peridocial implements Serializable{
-    
+       
     //这本期刊的书 id
     private String id = null;
-    
-    //相对应的封面
-    private String magazineId = null;
     
     private String describe = null;
     
@@ -28,17 +25,11 @@ public class Peridocial implements Serializable{
     
     //这本杂志的更新日期
     private Date date = null;
-    //页数
-    //private int count;
-    private Integer count = null;
-    //第几期
-    
-    private Integer number = null;
-    //private int number ;
     
     //本期的杂志封面
     private String image = null;
-    private String href = null;
+    
+    private String belongto = null;
     
     public void setId( String id ){
         this.id = id;
@@ -46,14 +37,6 @@ public class Peridocial implements Serializable{
     
     public String getId(){
         return this.id;
-    }
-    
-    public void setMagazineId(String peridocialId){
-        this.magazineId = peridocialId;
-    }
-    
-    public String getMagazineId(){
-        return this.magazineId;
     }
     
     public void setName(String name){
@@ -72,21 +55,6 @@ public class Peridocial implements Serializable{
         return this.date;
     }
     
-    public void setCount(Integer count){
-        this.count = count;
-    }
-    
-    public Integer getCount(){
-        return this.count;
-    }
-    
-    public void setNumber(Integer number){
-        this.number = number;
-    }
-    
-    public Integer getNumber(){
-        return this.number;
-    }
     
     public void setImage(String href){
         this.image= href;
@@ -96,13 +64,6 @@ public class Peridocial implements Serializable{
         return this.image;
     }
     
-    public void setHref(String href){
-        this.href = href;
-    }
-    
-    public String getHref(){
-        return this.href;
-    }
     
     public void setDescribe(String describe){
         this.describe = describe;
@@ -110,6 +71,14 @@ public class Peridocial implements Serializable{
     
     public String getDescribe(){
         return this.describe;
+    }
+    
+    public void setBelongto(String belongto){
+        this.belongto = belongto;
+    }
+    
+    public String getBelongto(){
+        return this.belongto;
     }
     
 }

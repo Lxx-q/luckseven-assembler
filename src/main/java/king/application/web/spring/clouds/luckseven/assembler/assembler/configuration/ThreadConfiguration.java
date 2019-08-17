@@ -13,7 +13,7 @@ import king.application.web.spring.clouds.luckseven.assembler.assembler.feign.Ca
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.ApplicationService;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.LeafService;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.MostService;
-import king.application.web.spring.clouds.luckseven.assembler.assembler.service.TagService;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.service.tag.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 

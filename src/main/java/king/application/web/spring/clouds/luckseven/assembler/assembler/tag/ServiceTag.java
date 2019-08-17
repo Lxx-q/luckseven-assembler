@@ -6,7 +6,7 @@
 package king.application.web.spring.clouds.luckseven.assembler.assembler.tag;
 
 import java.util.Map;
-import king.application.web.spring.clouds.luckseven.assembler.assembler.service.TagService;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.service.tag.TagService;
 
 /**
  *

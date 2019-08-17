@@ -7,7 +7,7 @@ package king.application.web.spring.clouds.luckseven.assembler.assembler.control
 
 import java.util.ArrayList;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.feign.CalculatorFeignClient;
-import king.application.web.spring.clouds.luckseven.assembler.assembler.service.TagService;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.service.tag.TagService;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.TreeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

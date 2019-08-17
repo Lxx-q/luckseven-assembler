@@ -17,7 +17,7 @@ import king.application.web.spring.clouds.luckseven.assembler.assembler.service.
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.LeafService;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.MostService;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.SectionService;
-import king.application.web.spring.clouds.luckseven.assembler.assembler.service.TagService;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.service.tag.TagService;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.TreeService;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.UrlService;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.common.BeanService;

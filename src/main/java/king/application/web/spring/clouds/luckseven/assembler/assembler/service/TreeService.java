@@ -5,6 +5,7 @@
  */
 package king.application.web.spring.clouds.luckseven.assembler.assembler.service;
 
+import king.application.web.spring.clouds.luckseven.assembler.assembler.service.tag.TagService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -112,7 +113,7 @@ public class TreeService {
         Tag firstbar_container = this.tag.build("div").attr("class", "container");
         Tag firstbar_container_row = this.tag.build("div").attr("class", "row");
         Tag firstbar_container_row_col1 = this.tag.build("div").attr("class", "col-md-3 col-sm-12");
-
+        
         //这里 是 应该是 相对应的 标志 文件 路径 
         // 设置 相对应的
         Tag firstbar_container_row_col1_brand = this.leaf.brand("images/logo.png", "/minitors/model/");
