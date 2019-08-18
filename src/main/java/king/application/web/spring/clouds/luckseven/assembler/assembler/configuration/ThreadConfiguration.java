@@ -8,7 +8,7 @@ package king.application.web.spring.clouds.luckseven.assembler.assembler.configu
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.PeridocialBrief;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.Article;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.feign.CalculatorFeignClient;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.ApplicationService;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.LeafService;
@@ -53,7 +53,7 @@ public class ThreadConfiguration {
                     //System.out.println("this is a heart jump is :\t" + (++index));
                     //获取相对应的 信息
                     try {
-                        List<PeridocialBrief> list_most = calculator.applicationMost();
+                        List<Article> list_most = calculator.applicationMost();
                         application.setMost(list_most);
 
                         most.configuration(list_most);

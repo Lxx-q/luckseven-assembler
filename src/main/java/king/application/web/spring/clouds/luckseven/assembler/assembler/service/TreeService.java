@@ -9,7 +9,7 @@ import king.application.web.spring.clouds.luckseven.assembler.assembler.service.
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.PeridocialBrief;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.Article;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.User;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.tag.Tag;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.tag.strategy.TagStrategy;
@@ -540,11 +540,11 @@ public class TreeService {
         
         //设置 上列的 信息
         
-        List<PeridocialBrief> container_row_div_2_block_peridocials = new ArrayList<PeridocialBrief>();
+        List<Article> container_row_div_2_block_peridocials = new ArrayList<Article>();
         //获取相对应的 信息的长度
         List<Tag> container_row_div_2_block_tag_list = new ArrayList<>();
         
-        for(PeridocialBrief peridocial_brief : container_row_div_2_block_peridocials){
+        for(Article peridocial_brief : container_row_div_2_block_peridocials){
             Tag container_row_div_2_block_article = this.leaf.articleMini(peridocial_brief);
             //将 相对应的 信息 输入 到 相对应的地方
             container_row_div_2_block_tag_list.add(container_row_div_2_block_article);
@@ -567,11 +567,11 @@ public class TreeService {
         Tag container_row_div_3  = this.tag.build("div").attr("class", "col-md-4 col-sm-6 col-xs-12");
         
         //我们输出 相对应的 一定量的 信息 
-        List<PeridocialBrief> containers_row_div_3_block_peridocials = new ArrayList<PeridocialBrief>();
+        List<Article> containers_row_div_3_block_peridocials = new ArrayList<Article>();
         
         List<Tag> container_row_div_3_block_tag_list = new ArrayList<>();
         //相对应的信息
-        for(PeridocialBrief peridocial_brief : containers_row_div_3_block_peridocials){
+        for(Article peridocial_brief : containers_row_div_3_block_peridocials){
         
             Tag container_row_div_3_block_article = this.leaf
                     .articleMini(peridocial_brief);

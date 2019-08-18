@@ -5,17 +5,14 @@
  */
 package king.application.web.spring.clouds.luckseven.assembler.assembler.bean;
 
-import java.io.Serializable;
 import java.util.Date;
+
 /**
  *
  * @author king
  */
-
-//确定的是期刊的一本杂志
-public class Peridocial implements Serializable{
-       
-    //这本期刊的书 id
+public class Article {
+        //这本期刊的书 id
     private String id = null;
     
     private String describe = null;

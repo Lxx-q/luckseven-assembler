@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
-import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.Peridocial;
-import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.PeridocialBrief;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.Article;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.Article;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.feign.CalculatorFeignClient;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.FeignService;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.LeafService;
@@ -66,16 +66,16 @@ public class LeafController {
     @RequestMapping("article/inner")
     public String article_inner(String string, Integer page_index, Integer page_size) {
         //根据 传输 进来的 string 进行获取 相对应的 peridocials
-        List<PeridocialBrief> peridocials = this.calculator.searchPeridocialBrief(string, page_index, page_size);
+        List<Article> peridocials = this.calculator.searchArticleBrief(string, page_index, page_size);
 
-        List<String> list_id = this.bean.transfer(peridocials, new TransferFunction<PeridocialBrief, String>() {
+        List<String> list_id = this.bean.transfer(peridocials, new TransferFunction<Article, String>() {
             @Override
-            public String transfer(PeridocialBrief target) {
+            public String transfer(Article target) {
                 return target.getId();
             }
         });
 
-        List<Map<String, Object>> list_map = this.calculator.searchPeridocialFavorites(list_id);
+        List<Map<String, Object>> list_map = this.calculator.searchArticleFavorites(list_id);
         
         Map<String,Map<String, Object>> id_map = this.bean.toMap(list_map, new TransferFunction<Map<String, Object> , String>() {
             @Override
@@ -93,7 +93,7 @@ public class LeafController {
         for (int index = 0 ; index < peridocials.size() ; index ++ ) {
             //进行 输入 相对应的 信息
         
-            PeridocialBrief peridocial = peridocials.get(index);
+            Article peridocial = peridocials.get(index);
             
             String id = peridocial.getId();
             
@@ -124,10 +124,10 @@ public class LeafController {
     public String article_fw(String string, Integer page_index, Integer page_size) {
 
         //相对应的 元数据
-        List<PeridocialBrief> peridocials = this.calculator.searchPeridocialBrief(string, page_index, page_size);
+        List<Article> peridocials = this.calculator.searchArticleBrief(string, page_index, page_size);
 
         StringBuilder builder = new StringBuilder();
-        for (PeridocialBrief peridocial_brief : peridocials) {
+        for (Article peridocial_brief : peridocials) {
             Tag article_fw = this.leaf.articleFw(peridocial_brief);
             //倘若 相对应的 atricle_fw  不等于 为 空 ， 则 添加 ， 否则 不添加 ， 添加 空字符串  
             builder.append(article_fw != null ? this.tag.http(article_fw) : "");
@@ -158,7 +158,7 @@ public class LeafController {
     @RequestMapping("aside/mini/{id}")
     public String article_mini(@PathVariable("id") String id) {
 
-        PeridocialBrief peridocial_brief = this.calculator.showPeridocialBrief(id);
+        Article peridocial_brief = this.calculator.showArticle(id);
         //获取 到 相对应的 Peridocial
         //进行 相对应的 渲染 以及 工作
         Tag article_mini = this.leaf.articleMini(peridocial_brief);

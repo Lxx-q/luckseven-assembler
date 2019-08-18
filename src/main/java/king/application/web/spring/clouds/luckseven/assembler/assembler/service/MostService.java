@@ -7,7 +7,7 @@ package king.application.web.spring.clouds.luckseven.assembler.assembler.service
 
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.tag.TagService;
 import java.util.List;
-import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.PeridocialBrief;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,13 +29,13 @@ public class MostService {
     
     private String aside_fw = null ;
 
-    public void configuration(List<PeridocialBrief> list) {
+    public void configuration(List<Article> list) {
         
         //相对应的 aisde  的 数据 建造者
         StringBuilder aside_mini_builder = new StringBuilder();
         StringBuilder aside_fw_builder = new StringBuilder();
         
-        for (PeridocialBrief peridocial_brief : list) {
+        for (Article peridocial_brief : list) {
 
             //下面 刚开始 看的 时候 可能 你会有 相对应 可以 进行 简短 代码的 冲动 ， 其实 也是
             //但是 ， 之所以 没有 使用 最简单的 做法 便是 因为 想把见过 稍微 简单 一点

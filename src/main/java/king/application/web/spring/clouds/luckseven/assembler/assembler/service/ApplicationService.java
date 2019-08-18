@@ -6,8 +6,8 @@
 package king.application.web.spring.clouds.luckseven.assembler.assembler.service;
 
 import java.util.List;
-import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.Peridocial;
-import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.PeridocialBrief;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.Article;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.Article;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,13 +18,13 @@ import org.springframework.stereotype.Service;
 public class ApplicationService {
 
     //我们 在 这里的 策略 是 每隔一定的 时间 ， 我们 再更新 相对应的 数据
-    private List<PeridocialBrief> most = null;
+    private List<Article> most = null;
 
-    public List<PeridocialBrief> most() {
+    public List<Article> most() {
         return this.most;
     }
 
-    public void setMost(List<PeridocialBrief> most) {
+    public void setMost(List<Article> most) {
         this.most = most;
     }
 

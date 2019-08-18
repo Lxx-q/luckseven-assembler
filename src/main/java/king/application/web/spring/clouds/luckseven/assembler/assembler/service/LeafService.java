@@ -7,7 +7,7 @@ package king.application.web.spring.clouds.luckseven.assembler.assembler.service
 
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.tag.TagService;
 import java.util.List;
-import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.PeridocialBrief;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.Article;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.User;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.tag.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,7 +68,7 @@ public class LeafService {
      * @param peridocials
      * @return
      */
-    public Tag articleInner(PeridocialBrief peridocial , Integer favorites_count) {
+    public Tag articleInner(Article peridocial , Integer favorites_count) {
 
         String href_peridocial = this.url.http("single/page/" + peridocial.getId());
 
@@ -267,7 +267,7 @@ public class LeafService {
      * @param peridocial
      * @return
      */
-    public Tag articleMini(PeridocialBrief peridocial) {
+    public Tag articleMini(Article peridocial) {
         Tag article = this.tag.build("article").attr("class", "article-mini");
 
         String peridocial_href = this.url.http("/single/page/" + peridocial.getId());
@@ -357,7 +357,7 @@ public class LeafService {
      * @param peridocial
      * @return
      */
-    public Tag articleFw(PeridocialBrief peridocial) {
+    public Tag articleFw(Article peridocial) {
         if (peridocial == null) {
             return null;
         }

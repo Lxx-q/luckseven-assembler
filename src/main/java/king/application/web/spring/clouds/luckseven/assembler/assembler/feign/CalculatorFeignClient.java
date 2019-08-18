@@ -7,8 +7,8 @@ package king.application.web.spring.clouds.luckseven.assembler.assembler.feign;
 
 import java.util.List;
 import java.util.Map;
-import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.Peridocial;
-import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.PeridocialBrief;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.Article;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.ArticleContent;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,29 +24,32 @@ public interface CalculatorFeignClient {
     @RequestMapping("/calculator/test/hello")
     public String test_hello();
     
-    @RequestMapping("/calculator/show/peridocial")
-    public Peridocial showPeridocial(@RequestParam String id);
+    @RequestMapping("/calculator/show/article")
+    public Article showArticle(@RequestParam String id);
     
-    @RequestMapping("/calculator/show/peridocial")
-    public PeridocialBrief showPeridocialBrief(@RequestParam("id") String id);
+    @RequestMapping("/calculator/show/article/content")
+    public ArticleContent showArticleContent( @RequestParam("id") String id );
     
-    @RequestMapping("/calculator/search/peridocial/brief")
-    public List<PeridocialBrief> searchPeridocialBrief(@RequestParam("string") String string ,@RequestParam("page_index") Integer page_index ,
+    @RequestMapping("/calculator/search/article/content")
+    public List<ArticleContent> search_article_content_like( @RequestParam("text") String text );
+
+    @RequestMapping("/calculator/search/article/brief")
+    public List<Article> searchArticleBrief(@RequestParam("string") String string ,@RequestParam("page_index") Integer page_index ,
             @RequestParam("page_size") Integer page_size);
     
     @RequestMapping("calculator/application/most")
-    public List<PeridocialBrief> applicationMost();
+    public List<Article> applicationMost();
     
     
-    //根据 相对应的 peridocial _id  , 便可以 获取 相对应的 peridocial 的 favorites 数目
+    //根据 相对应的 article _id  , 便可以 获取 相对应的 article 的 favorites 数目
     /**
      *  输出 相对应的 信息 
      * 相对应的 架构为 { id : xx , favorites_count : xx }
      * @param id
      * @return 
      */
-    @RequestMapping( "/calculator/search/peridocial/favorites")
-    public List<Map<String,Object>> searchPeridocialFavorites(@RequestBody List<String> id );
+    @RequestMapping( "/calculator/search/article/favorites")
+    public List<Map<String,Object>> searchArticleFavorites(@RequestBody List<String> id );
  
     @RequestMapping("/calculator/search/list")
     public List list();

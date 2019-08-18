@@ -12,45 +12,44 @@ import java.util.Date;
  * @author king
  */
 public class Favorites {
-    
+
     private String id = null;
-    
+
     private String userId = null;
-    
-    private String peridocialId = null;
-    
-    
+
+    private String articleId = null;
+
     private Date time = null;
-    
-    public void setId(String id){
+
+    public void setId(String id) {
         this.id = id;
     }
-    
-    public String getId(){
+
+    public String getId() {
         return this.id;
     }
-    
-    public void setUserId(String userId){
+
+    public void setUserId(String userId) {
         this.userId = userId;
     }
-    
-    public String getUserId(){
+
+    public String getUserId() {
         return this.userId;
     }
-    
-    public void setPeridocialId(String peridocialId){
-        this.peridocialId = peridocialId;
+
+    public void setArticleId(String articleId) {
+        this.articleId = articleId;
     }
-    
-    public String getPeridocialId(){
-        return this.peridocialId;
+
+    public String getArticle() {
+        return this.articleId;
     }
-    
-    public void setTime(Date time){
+
+    public void setTime(Date time) {
         this.time = time;
     }
-    
-    public Date getTime(){
+
+    public Date getTime() {
         return this.time;
     }
 }
