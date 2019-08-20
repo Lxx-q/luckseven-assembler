@@ -8,6 +8,7 @@ package king.application.web.spring.clouds.luckseven.assembler.assembler.service
 import king.application.web.spring.clouds.luckseven.assembler.assembler.service.tag.TagService;
 import java.util.List;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.Article;
+import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.ArticleContent;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.bean.User;
 import king.application.web.spring.clouds.luckseven.assembler.assembler.tag.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,12 @@ public class LeafService {
 
     @Autowired
     private UrlService url;
+    
+    @Autowired
+    private TimeService time;
+    
+    @Autowired
+    private LeafService self;
 
     /**
      *
@@ -315,7 +322,134 @@ public class LeafService {
 
         return article;
     }
+    
+    /**
+     * 
+     *  填充 相对应的 文章 头部 信息
+     * 
+     * @param article  文章 信息
+     * @param user
+     * @return 
+     */
+    public Tag articleMainHeader( Article article , User user ){
+        
+        //相对应的 header 便签的 信息 
+        Tag header = this.tag.build("header");
+        
+        //相对应的 名称
+        
+        Tag header_h1 = this.tag.build("h1").text( article.getName() );
+        
+        Tag header_details = this.tag.build("ul").attr("class", "details");
+        
+        //下一层 的 信息
+        
+        //得出 相对应的 日期的 信息
+        String time_string = this.time.getDateString(article.getDate());
+        
+        this.tag.bind(header_details, "li").text( time_string );
+        //设置 标签
+        Tag header_h1_tag = this.tag.build("li");
+        
+        //设置 相对应 的信息 , 相对应的 url 
+        this.tag.bind(header_h1_tag, "a").text("a");
+        
+        //填充 相对应的 信息
+        this.tag.append(header_h1, header_h1_tag);
+            
+        //设置 相对应的 信息  , 输入 相对应的 信息
+        this.tag.bind(header_h1_tag, "li").text( user.getUsername());
+        
+        // 填充 相对应的 信息
+        this.tag.append(header, header_h1)
+                .append(header, header_details);
+        
+        return header;
+    }
 
+    /**
+     * 
+     * 输入 相对应的 文章的 主题信息
+     * 
+     * @param article_content
+     * @return 
+     */
+    public Tag articleMainContent( ArticleContent article_content ){
+        
+        //填充 相对应的 信息
+        Tag article_content_tag = this.tag.build("div").attr("class", "main")
+                .text(article_content.getContent());
+        
+        return article_content_tag;
+    }
+    
+    /**
+     * 相对应的 尾部的 信息
+     * @param favorites_count
+     * @return 
+     */
+    public Tag articleMainFooter( Integer favorites_count ){
+        
+        //下面 ， 我们 开始 获取 相对应的 Favorites 的数量
+        
+        //相对应的 头部 标签
+        Tag footer = this.tag.build("footer");
+        
+        Tag footer_col_1 = this.tag.build("div").attr("class", "col");
+        
+        Tag footer_col_1_ul = this.tag.build("ul").attr("class", "tags");
+        
+        // 下面 开始 相对应的信息 设置
+        for(int index  = 0 ; index < 5 ; index ++){
+            
+        }
+        
+        //下面 便开始 设置 相对应的 信息
+        
+        this.tag.append(footer_col_1, footer_col_1_ul)
+                .append(footer, footer_col_1);
+        
+        //下面 设置 相对应的 favorites 的 数量
+        
+        Tag footer_col_2 = this.tag.build("div").attr("class", "col");
+        
+        Tag footer_col_2_a = this.self
+                .love(this.self.icon("ion-android-favorite-outline")
+                        ,this.self.loveCount( favorites_count ));
+        
+        //设置 相对应的 信息
+        this.tag.append(footer_col_2, footer_col_2_a)
+                .append(footer, footer_col_2);
+                
+        return footer;
+        
+    }
+    
+    public Tag love( Tag... childrens ){
+        
+        Tag tag = this.tag.build("a").attr("href", "#").attr("class", "love");
+        
+        //下面 我们  便可以 设置 相对应的 信息
+        
+        for(int index = 0 ; index < childrens.length ; index++ ){
+            
+            //设置 相对应的 信息
+            
+            Tag children_tag = childrens[index];
+            
+            //填充 相对应的 信息
+            this.tag.append(tag, children_tag);
+        }
+        
+        return tag;
+        
+    }
+    
+    public Tag loveCount(Integer count){
+        return this.tag.build("div").text(count.toString());
+    }
+    
+    
     public Tag aside(String text) {
         Tag aside = this.tag.build("aside").text(text);
         return aside;

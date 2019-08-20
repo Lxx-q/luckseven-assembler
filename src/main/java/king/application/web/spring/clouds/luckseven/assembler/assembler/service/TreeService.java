@@ -620,5 +620,9 @@ public class TreeService {
         return container;
 
     }
+    
+    public Tag articleSingle( String id ){
+        return null;
+    }
 
 }

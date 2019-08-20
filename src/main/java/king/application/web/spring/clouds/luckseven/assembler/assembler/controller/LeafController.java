@@ -189,7 +189,7 @@ public class LeafController {
     }
 
     @RequestMapping("article/fw/most")
-    public String articlw_fw_most() {
+    public String article_fw_most() {
         return this.most.getAsideFw();
     }
 

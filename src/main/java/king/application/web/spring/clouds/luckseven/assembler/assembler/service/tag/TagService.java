@@ -24,6 +24,9 @@ public class TagService {
     @Autowired
     private HttpBuilderService http_builder;
     
+    @Autowired
+    private TagService self;
+    
     public String http(Tag tag) {
         return this.http_builder.string(tag);
     }
@@ -52,6 +55,25 @@ public class TagService {
         }
         
         return builder.toString();
+        
+    }
+    
+    /**
+     * 
+     * 下面的 信息的 方式 ， 是通过 相对应的 name ， 的 配置 来直接 赋值 相对应的 信息
+     * 
+     * @param father
+     * @param children_name
+     * @return 
+     */
+    
+    public Tag bind(Tag father , String children_name ){
+        
+        Tag children = this.self.build(children_name);
+        //将相对应的 信息 赋值进去
+        this.self.append(father, children);
+        
+        return children;
         
     }
 
